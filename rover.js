@@ -10,6 +10,7 @@ class Rover {
       let status = [];
   
       for (let command of message.commands) {
+        
         if (command.commandType === 'MODE_CHANGE') {
           this.mode = command.value;
           status.push({ completed: true });

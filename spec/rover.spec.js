@@ -54,6 +54,7 @@ describe('Rover', function() {
   it('responds correctly to the mode change command', function() {
     let commands = [new Command('MODE_CHANGE', 'LOW_POWER')];
     let message = new Message('Test message with one command', commands);
+    
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
 
