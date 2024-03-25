@@ -7,21 +7,21 @@ class Rover {
  
   
    receiveMessage(message) {
-      let results = [];
+      let status = [];
   
       for (let command of message.commands) {
         if (command.commandType === 'MODE_CHANGE') {
           this.mode = command.value;
-          results.push({ completed: true });
+          status.push({ completed: true });
         } else if (command.commandType === 'MOVE') {
           if (this.mode === 'LOW_POWER') {
-            results.push({ completed: false });
+            status.push({ completed: false });
           } else {
             this.position = command.value;
-            results.push({ completed: true });
+            status.push({ completed: true });
           }
         } else if (command.commandType === 'STATUS_CHECK') {
-          results.push({
+          status.push({
             completed: true,
             roverStatus: {
               mode: this.mode,
@@ -32,7 +32,7 @@ class Rover {
         }
       }
   
-      return { message: message.name, results };
+      return { message: message.name, status };
     }
   }
 

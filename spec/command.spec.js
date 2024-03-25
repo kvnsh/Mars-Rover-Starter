@@ -12,6 +12,7 @@ describe("Command class", function() {
   // Test 2
   it("constructor sets command type", function() {
     let modeCommand = new Command('MODE_CHANGE', 'LOW_POWER');
+    
     expect(modeCommand.commandType).toBe('MODE_CHANGE');
   });
 

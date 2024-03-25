@@ -6,6 +6,7 @@ class Message {
      }
      this.commands = commands;
    }
+   
  }
 
 module.exports = Message;

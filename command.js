@@ -5,6 +5,8 @@ class Command {
        throw Error("Command type required.");
      }
      this.value = value;
+     
    }
   }
+
  module.exports = Command;

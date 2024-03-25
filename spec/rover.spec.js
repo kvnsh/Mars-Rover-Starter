@@ -35,7 +35,7 @@ describe('Rover', function() {
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
 
-    expect(response.results.length).toBe(2);
+    expect(response.status.length).toBe(2);
   });
 
   // Test 10
@@ -45,19 +45,20 @@ describe('Rover', function() {
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
 
-    expect(response.results[0].roverStatus.mode).toBe('NORMAL');
-    expect(response.results[0].roverStatus.generatorWatts).toBe(110);
-    expect(response.results[0].roverStatus.position).toBe(98382);
+    expect(response.status[0].roverStatus.mode).toBe('NORMAL');
+    expect(response.status[0].roverStatus.generatorWatts).toBe(110);
+    expect(response.status[0].roverStatus.position).toBe(98382);
   });
 
-  // Test 11
+  // Test 11 - I have to write the purpose?!!!!!
   it('responds correctly to the mode change command', function() {
     let commands = [new Command('MODE_CHANGE', 'LOW_POWER')];
     let message = new Message('Test message with one command', commands);
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
 
-    expect(response.results[0].completed).toBe(true);
+    expect(response.status[0].completed).toBe(true);
+    
     expect(rover.mode).toBe('LOW_POWER');
   });
 
@@ -68,7 +69,7 @@ describe('Rover', function() {
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
 
-    expect(response.results[1].completed).toBe(false);
+    expect(response.status[1].completed).toBe(false);
     expect(rover.position).toBe(98382); // Position should not change in LOW_POWER mode
   });
 
@@ -79,7 +80,7 @@ describe('Rover', function() {
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
 
-    expect(response.results[0].completed).toBe(true);
+    expect(response.status[0].completed).toBe(true);
     expect(rover.position).toBe(98765);
   });
 });
